@@ -301,7 +301,10 @@ function updateApples() {
     const screamerVideo = document.getElementById("screamer-video-element");
     screamerVideo.play();
     screamerVideo.addEventListener("ended", function() {
-        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        // window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        document.getElementById("rickroll-screen").style.display = "block";
+        document.getElementById("rickroll-video-element").play();
+
     });
   }
 }
