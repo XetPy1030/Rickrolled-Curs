@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursed Curs - Сними проклятие!</title>
+    <link rel="stylesheet" href="styles_game.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="start-screen">
+        <div class="container">
+            <h1 id="cursed-curs-title">Cursed Curs</h1>
+            <p>Готов ли ты отправиться в опасное путешествие?</p>
+            <button id="startButton" class="start-button">Начать путешествие</button>
+        </div>
+    </div>
+
+    <div id="game-screen-container">
+        <div class="container" id="game-screen" style="display: none;">
+            <h1 id="welcome-text">Добро пожаловать, странник...</h1>
+            <p>Ты нашел древний свиток, который может помочь <span class="cursed" id="easterEgg1Text">Cursed Curs</span>
+                избавиться от его проклятия. Но помни: проклятия не так просто снять. Ты готов рискнуть?</p>
+            <img id="easterEgg1Image" src="paschalka.jpg" alt="Пасхалка" class="hidden" style="display: none;">
+
+            <!-- <button id="curseButton">Снять проклятие</button> -->
+
+            <button class="curse-button" id="curseButton">
+                Снять проклятие
+                <div class="blood-drip"></div>
+                <div class="blood-drip"></div>
+                <div class="blood-drip"></div>
+                <div class="blood-drip"></div>
+                <div class="blood-drip"></div>
+            </button>
+
+            <div id="ritual">
+                <img src="candle.gif" class="candle" alt="Свеча">
+                <img src="candle.gif" class="candle" alt="Свеча">
+                <img src="candle.gif" class="candle" alt="Свеча">
+                <p id="countdown"></p>
+                <img src="dab_dance_1.gif" alt="Танцующий чел" style="width: 150px; margin-bottom: 1rem;">
+            </div>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" style="display: none;"></canvas>
+    <!-- <canvas id="gameCanvas" style="display: block;"></canvas> -->
+
+    <div id="screamer" style="display: none;">
+        <div id="screamer-video">
+            <video src="https://media.tenor.com/xnkmr0YtjFgAAAPo/spider-jumpscare.mp4" id="screamer-video-element" muted></video>
+        </div>
+    </div>
+
+    <div id="whiteOverlay"></div> <!-- Новый элемент для белого экрана -->
+
+    <audio id="backgroundMusic" loop>
+        <source src="wind-drone-7.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <audio id="smehMusic">
+        <source src="smeh.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <audio id="candleMusic" loop>
+        <source src="candle.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <script src="game.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
