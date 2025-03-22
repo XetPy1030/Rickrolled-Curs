@@ -1,4 +1,7 @@
 const apples = [];
+let lastTime = 0;
+const targetFPS = 60;
+const frameInterval = 1000 / targetFPS;
 
 function getRandomHEXColor() {
     return "#" + Math.floor(Math.random()*16777215).toString(16);
@@ -225,9 +228,6 @@ function updatePlayer() {
 }
 
 function updateCurse() {
-//   curse.x += curse.speed;
-//   if (curse.x > canvas.width) curse.x = -100;
-
   // Calculate direction to player
   let dx = player.x - curse.x;
   let dy = player.y - curse.y;
@@ -294,34 +294,37 @@ function updateApples() {
 
   // Check if all apples are collected
   if (apples.every(apple => apple.collected)) {
-    // alert("Поздравляем! Вы собрали все яблоки!");
     game.isRunning = false;
 
     document.getElementById("screamer").style.display = "block";
     const screamerVideo = document.getElementById("screamer-video-element");
     screamerVideo.play();
     screamerVideo.addEventListener("ended", function() {
-        // window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         document.getElementById("rickroll-screen").style.display = "block";
         document.getElementById("rickroll-video-element").play();
-
     });
   }
 }
 
-function gameLoop() {
+function gameLoop(timestamp) {
   if (!game.isRunning) return;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const deltaTime = timestamp - lastTime;
 
-  updatePlayer();
-  updateCurse();
-  updateApples();
-  
-  drawPlatforms();
-  drawPlayer();
-  drawCurse();
-  drawApples();
+  if (deltaTime >= frameInterval) {
+    lastTime = timestamp - (deltaTime % frameInterval);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    updatePlayer();
+    updateCurse();
+    updateApples();
+    
+    drawPlatforms();
+    drawPlayer();
+    drawCurse();
+    drawApples();
+  }
 
   requestAnimationFrame(gameLoop);
 }
@@ -330,7 +333,8 @@ function startGame() {
   game.isRunning = true;
   generatePlatforms();
   generateApples();
-  gameLoop();
+  lastTime = performance.now();
+  gameLoop(lastTime);
 }
 
 // startGame();
