@@ -81,7 +81,11 @@ document.getElementById("curseButton").addEventListener("click", function () {
 
             setTimeout(() => {
                 // Перенаправляем на рикролл
-                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                // window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                document.getElementById("rickroll-screen").style.display = "block";
+                document.getElementById("rickroll-video-element").play();
+
+                whiteOverlay.style.opacity = 0;
             }, 4000);
         }
     }, 1000);
